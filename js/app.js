@@ -126,7 +126,7 @@ function productCategories(cateData) {
                                         <img class="card-img-top" src="${photoProduct}" alt="Card image cap">
                                         <h5 class="card-title mt-2">${nameProduct}</h5>
                                         <p class="card-text h5 mt-2"><strong>Precio: $${costProduct}</strong></p>
-                                         <a href="#" class="btn btn-primary mt-2 car" data-product="${nameProduct}" data-price= "${costProduct}">comprar</a>
+                                         <a href="#" class="btn btn-primary mt-2 car" data-product="${nameProduct}" data-price= "${costProduct}">Add To Car</a>
                                     </div>
                                 </div>`;
 
