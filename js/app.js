@@ -1,13 +1,18 @@
-var form = $('#search-form');
+var search = $('.search');
 
-var search = $('#searchProducts');
-var searchedForText;
+var searchProducts = $('#searchProducts');
+var searchText;
 
-form.click(function(e) {
+var count = 0;
+var numeros = [];
+
+
+
+search.click(function(e) {
     e.preventDefault();
-    searchedForText = search.val();
+    searchText = searchProducts.val();
     $('#searchProducts').val("");
-    if (searchedForText.length !== 0) {
+    if (searchText.length !== 0) {
         $('#content').empty();
         $('#tittle').empty();
     }
@@ -16,33 +21,33 @@ form.click(function(e) {
 
 function getData() {
     $.ajax({
-        url: `https://api.mercadolibre.com/sites/MLM/search?q=${searchedForText}`,
+        url: `https://api.mercadolibre.com/sites/MLM/search?q=${searchText}`,
         contentType: 'application/json',
         method: 'GET',
         crossDomain: true,
         success: function(response) {
-            // console.log(response.results);
 
-            var tempTittle = `<h3>${searchedForText}</h3>`
-            $('#tittle').append(tempTittle);
+            var temTittleCat = `<h3>${searchText}</h3>`
+            $('#tittle').append(temTittleCat);
 
-            for (var i = 0; i < response.results.length; i++) {
+            for (var i = 0; i < 15; i++) {
                 var photo = response.results[i].thumbnail;
                 var titleProduct = response.results[i].title;
                 var priceProduct = response.results[i].price;
 
 
-                var template = `<div class="card mt-2" style="width: 18rem;">
+                var temProducts = `<div class="card mt-2" style="width: 18rem;">
                          <div class="card-body text-center">
                              <img class="card-img-top img-fluid" src="${photo}" alt="Card image cap">
                              <h5 class="card-title mt-2">${titleProduct}</h5>
-                             <p class="card-text h5 mt-2"><strong>Precio: $ ${priceProduct}</strong></p>
-                             <a href="#" class="btn btn-primary mt-2">Add To Car</a>
+                             <p class="card-text h5 mt-2"><strong>Precio: $${priceProduct}</strong></p>
+                             <a href="#" class="btn btn-primary mt-2 car" data-product="${titleProduct}" data-price="${priceProduct}">Add To Car</a>
                          </div>
                       </div>`;
 
-                $('#content').append(template);
+                $('#content').append(temProducts);
             };
+            $('.car').click(getElementsCart);
         }
     });
 };
@@ -55,19 +60,19 @@ function getAll() {
         crossDomain: true
     }).done(
         function(response) {
-            console.log(response);
+
 
             for (var i = 0; i < response.length; i++) {
-                var nameCategories = response[i].name;
 
+                var nameCategories = response[i].name;
                 var idCategories = response[i].id;
-                var templateCategories = `<div class="card mt-4" style="width:18rem;" >
+                var temCategories = `<div class="card mt-4" style="width:18rem;" >
                                     <div class="card-body text-center">
-                                        <a href="#"data-categorie="${idCategories}" id="${nameCategories}"class="card-title template">${nameCategories} </a>
+                                        <a href="#"data-categorie="${idCategories}" id="${nameCategories}" class="card-title template">${nameCategories} </a>
                                     </div>
                                 </div>`;
 
-                $('#content').append(templateCategories);
+                $('#content').append(temCategories);
 
             }
 
@@ -90,19 +95,15 @@ function getAll() {
 }
 
 $('#home').click(function() {
-    if (searchedForText.length !== 0) {
-        $('#content').empty();
-        $('#tittle').empty();
-    }
+    $('#content').empty();
+    $('#tittle').empty();
 
     getAll();
 
 
 });
 
-function error() {
-    alert("No se pueden cargar los datos");
-}
+
 
 function productCategories(cateData) {
 
@@ -115,36 +116,77 @@ function productCategories(cateData) {
 
     function getOne(response) {
 
-        for (var i = 0; i < response.results.length; i++) {
+        for (var i = 0; i < 15; i++) {
             var photoProduct = response.results[i].thumbnail;
             var nameProduct = response.results[i].title;
             var costProduct = response.results[i].price;
-            //   var shipping = response.results[i].address.state_name + ',' + response.results[i].address.city_name;
 
-            var template = `<div class="card" style="width: 18rem;">
+            var temProductsCat = `<div class="card" style="width: 18rem;">
                                     <div class="card-body text-center">
                                         <img class="card-img-top" src="${photoProduct}" alt="Card image cap">
                                         <h5 class="card-title mt-2">${nameProduct}</h5>
-                                        <p class="card-text h5 mt-2"><strong>Precio: $ ${costProduct}</strong></p>
-                                         <a href="#" class="btn btn-primary mt-2">comprar</a>
+                                        <p class="card-text h5 mt-2"><strong>Precio: $${costProduct}</strong></p>
+                                         <a href="#" class="btn btn-primary mt-2 car" data-product="${nameProduct}" data-price= "${costProduct}">comprar</a>
                                     </div>
                                 </div>`;
 
-            $('#content').append(template);
+            $('#content').append(temProductsCat);
 
         }
+        $('.car').click(getElementsCart);
     }
 };
 
 
 function error() {
     alert("No se pueden cargar los datos");
+    throw "No se pueden cargar los datos";
+}
+
+function getElementsCart(e, nameProductCar, priceProductCar) {
+    var elem = e.target;
+    var nameProductCar = $(elem).attr('data-product');
+    var priceProductCar = $(elem).attr('data-price');
+    var templateModal =
+        `<table class="table">
+                                 <thead>
+                                        <tr>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Producto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td id="price-modal" class="total">$${priceProductCar}</td>
+                                            <td id="product-modal">${nameProductCar}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>`;
+
+    $('#text-mdl').append(templateModal);
+
+    count += 1;
+    $('#count').text(`  ${count}`);
+
+    numeros.push(parseFloat(priceProductCar));
+
+    function sumarArray(array) {
+        var suma = 0;
+        array.forEach(function(numero) {
+            suma += numero;
+        });
+        return suma;
+    }
+
+    var sumar = sumarArray(numeros);
+
+    $('#total').html(`<strong>TOTAL: $${sumar}</strong>`);
 };
+
 
 
 $(document).ready(function() {
     getAll();
-
 
 
 });
