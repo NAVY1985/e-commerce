@@ -12,6 +12,14 @@ Asi q no lo pienses más y a comprar!!!!
 
 ***
 
+![alt text](assets/images/easy-start.png)
+
+![alt text](assets/images/easy-search.png)
+
+![alt text](assets/images/easy-count.png)
+
+***
+
 ### RETO
 
 
@@ -38,12 +46,6 @@ Patrón de arquitectura de software (MV*)
 + JQuery 
 
 ***
-
-![alt text](assets/images/easy-start.png)
-
-![alt text](assets/images/easy-search.png)
-
-![alt text](assets/images/easy-count.png)
 
 ### ELABORADO PARA:
 
