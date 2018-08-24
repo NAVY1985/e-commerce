@@ -1,16 +1,4 @@
 
-### EL RETO
-
-
-Como reto final de este curso deberás crear una app web bajo los principios de SPA (Single page aplication)
-
-Para ello debes entender y aplicar los siguientes conceptos.
-
-Templating
-Routing (URLs)
-DOM & Event Handling (State)
-Patrón de arquitectura de software (MV*)
-
 ## EASY SHOP 
 
 
@@ -22,4 +10,42 @@ En Easy Shop podrás ver por categorías y al entrar a cada una de ellas encontr
 
 Asi q no lo pienses más y a comprar!!!!
 
+***
+
+### RETO
+
+
+Como reto final de este curso deberás crear una app web bajo los principios de SPA (Single page aplication)
+
+Para ello debes entender y aplicar los siguientes conceptos.
+
+Templating
+Routing (URLs)
+DOM & Event Handling (State)
+Patrón de arquitectura de software (MV*)
+
+***
+
+### HERRAMIENTAS DE TECNOLOGIA APLICADAS
+
+
++ HTML 5
+
++ CSS 3
+
++ Boostrap 4
+
++ JQuery 
+
+***
+
+### ELABORADO PARA:
+
+![alt text](assets/images/laboratoria.png)
+
+***
+
+### ELABORADO POR:
+
+* Nadya Salazar alias **Navy**
 

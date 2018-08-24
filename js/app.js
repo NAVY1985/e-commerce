@@ -1,11 +1,6 @@
 var search = $('.search');
-
 var searchProducts = $('#searchProducts');
 var searchText;
-
-var count = 0;
-var numeros = [];
-
 
 
 search.click(function(e) {
@@ -30,6 +25,7 @@ function getData() {
             var temTittleCat = `<h3>${searchText}</h3>`
             $('#tittle').append(temTittleCat);
 
+
             for (var i = 0; i < 15; i++) {
                 var photo = response.results[i].thumbnail;
                 var titleProduct = response.results[i].title;
@@ -41,7 +37,7 @@ function getData() {
                              <img class="card-img-top img-fluid" src="${photo}" alt="Card image cap">
                              <h5 class="card-title mt-2">${titleProduct}</h5>
                              <p class="card-text h5 mt-2"><strong>Precio: $${priceProduct}</strong></p>
-                             <a href="#" class="btn btn-primary mt-2 car" data-product="${titleProduct}" data-price="${priceProduct}">Add To Car</a>
+                             <button type="button" class="btn btn-primary mt-2 car" data-product="${titleProduct}" data-price="${priceProduct}">Add To Car</button>
                          </div>
                       </div>`;
 
@@ -60,7 +56,6 @@ function getAll() {
         crossDomain: true
     }).done(
         function(response) {
-
 
             for (var i = 0; i < response.length; i++) {
 
@@ -103,8 +98,6 @@ $('#home').click(function() {
 
 });
 
-
-
 function productCategories(cateData) {
 
     $.ajax({
@@ -126,7 +119,7 @@ function productCategories(cateData) {
                                         <img class="card-img-top" src="${photoProduct}" alt="Card image cap">
                                         <h5 class="card-title mt-2">${nameProduct}</h5>
                                         <p class="card-text h5 mt-2"><strong>Precio: $${costProduct}</strong></p>
-                                         <a href="#" class="btn btn-primary mt-2 car" data-product="${nameProduct}" data-price= "${costProduct}">Add To Car</a>
+                                         <button type="button" class="btn btn-primary mt-2 car" data-product="${nameProduct}" data-price= "${costProduct}">Add To Car</button>
                                     </div>
                                 </div>`;
 
@@ -138,50 +131,69 @@ function productCategories(cateData) {
 };
 
 
+
+var count = 0;
+var numeros = [];
+var larray = [];
+
+function deleteCart(e) {
+
+    $(e).closest('tr').remove();
+    count--;
+
+    $('#count').text(` ${count}`);
+};
+
+
+
+function getElementsCart(e, nameProductCar, priceProductCar) {
+
+    var elem = e.target;
+    var nameProductCar = $(elem).attr('data-product');
+    var priceProductCar = $(elem).attr('data-price');
+    var templateModal =
+        `   <tr>
+        <td id="price-modal" class="total">$${priceProductCar}</td>
+        <td id="product-modal">${nameProductCar}</td>
+        <td id="product-modal"><button type="button" class="close closer delete" aria-label="Close" onclick="deleteCart(this)" data-delete="${count}" data-price="${priceProductCar}">
+        <span aria-hidden="true" >&times;</span></button></td>
+
+    </tr>`;
+
+    $('#tbody').append(templateModal);
+
+    count += 1;
+
+    $('#count').text(`  ${count}`);
+
+
+    numeros.push(parseFloat(priceProductCar));
+
+
+
+
+    $('#total').html(`<strong>TOTAL: 
+                    $${sumarArray(numeros)}</strong>`);
+
+};
+
+
+function sumarArray(array) {
+
+    var suma = 0;
+
+    array.forEach(function(numero) {
+        suma += numero;
+    });
+    return suma;
+}
+
+
 function error() {
     alert("No se pueden cargar los datos");
     throw "No se pueden cargar los datos";
 }
 
-function getElementsCart(e, nameProductCar, priceProductCar) {
-    var elem = e.target;
-    var nameProductCar = $(elem).attr('data-product');
-    var priceProductCar = $(elem).attr('data-price');
-    var templateModal =
-        `<table class="table">
-                                 <thead>
-                                        <tr>
-                                            <th scope="col">Precio</th>
-                                            <th scope="col">Producto</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td id="price-modal" class="total">$${priceProductCar}</td>
-                                            <td id="product-modal">${nameProductCar}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>`;
-
-    $('#text-mdl').append(templateModal);
-
-    count += 1;
-    $('#count').text(`  ${count}`);
-
-    numeros.push(parseFloat(priceProductCar));
-
-    function sumarArray(array) {
-        var suma = 0;
-        array.forEach(function(numero) {
-            suma += numero;
-        });
-        return suma;
-    }
-
-    var sumar = sumarArray(numeros);
-
-    $('#total').html(`<strong>TOTAL: $${sumar}</strong>`);
-};
 
 
 
