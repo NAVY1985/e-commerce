@@ -39,13 +39,23 @@ Patrón de arquitectura de software (MV*)
 
 ***
 
+![alt text](assets/images/easy-start.png)
+
+![alt text](assets/images/easy-search.png)
+
+![alt text](assets/images/easy-count.png)
+
 ### ELABORADO PARA:
 
 ![alt text](assets/images/laboratoria.png)
+
+
 
 ***
 
 ### ELABORADO POR:
 
 * Nadya Salazar alias **Navy**
+
+
 
