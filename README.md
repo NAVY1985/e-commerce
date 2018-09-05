@@ -1,5 +1,5 @@
 
-## EASY SHOP 
+# EASY SHOP 
 
 
 Easy Shop es un e-commerce dirigido al público en general que disfrutan de estar en su casa o que no tiene tiempo para salir de compras
@@ -10,13 +10,18 @@ En Easy Shop podrás ver por categorías y al entrar a cada una de ellas encontr
 
 Asi q no lo pienses más y a comprar!!!!
 
+![easy-search](https://user-images.githubusercontent.com/37165809/45066255-299a9100-b083-11e8-950b-f89255ccbc2b.png)
+
 ***
 
-![alt text](assets/images/easy-start.png)
+### DESARROLLADO PARA:
 
-![alt text](assets/images/easy-search.png)
+[Laboratoria](http://laboratoria.la)
 
-![alt text](assets/images/easy-count.png)
+
+![alt text](assets/images/laboratoria.png)
+
+
 
 ***
 
@@ -47,17 +52,13 @@ Patrón de arquitectura de software (MV*)
 
 ***
 
-### ELABORADO PARA:
 
-![alt text](assets/images/laboratoria.png)
-
-
-
-***
 
 ### ELABORADO POR:
 
 * Nadya Salazar alias **Navy**
+
+***
 
 
 
